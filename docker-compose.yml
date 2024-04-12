@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  database:
+    image: mysql
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: 123124
+      MYSQL_DATABASE: people
+      MYSQL_USER: rocks
+      MYSQL_PASSWORD: 123124
+    ports:
+      - "3306:3306"
+    restart: always
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - fullcyclerocks
+
+  application:
+    build:
+      context: ./nodejs
+      dockerfile: Dockerfile
+    container_name: nodejs
+    networks:
+      - fullcyclerocks
+    depends_on:
+      - database
+    environment:
+      DATABASE_HOST: mysqldb
+      DATABASE_PORT: 3306
+      DATABASE: people
+      DATABASE_USER: rocks
+      DATABASE_PASSWORD: 123124
+    ports:
+      - "80:3000"
+    restart: always
+
+networks:
+  fullcyclerocks:
+    driver: bridge
+
+volumes:
+  dbdata:
+
+

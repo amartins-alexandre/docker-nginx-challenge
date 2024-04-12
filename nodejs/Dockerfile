@@ -1,0 +1,15 @@
+FROM node:iron
+
+ENV DATABASE=people
+ENV DATABASE_HOST=mysqldb
+ENV DATABASE_USER=rocks
+ENV DATABASE_PASSWORD=123124
+ENV DATABASE_PORT=3306
+
+COPY ./ .
+
+RUN npm install
+
+EXPOSE 3000
+CMD ["node", "server.js"]
+
