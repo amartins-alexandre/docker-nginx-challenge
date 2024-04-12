@@ -76,6 +76,10 @@ app.get('/', async (req, res) => {
         });
 });
 
+app.get('/helthcheck', (_, res) => {
+    res.send('Ok');
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
