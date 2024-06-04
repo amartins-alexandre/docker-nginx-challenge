@@ -1,5 +1,7 @@
 FROM node:iron
 
+WORKDIR /usr/src/app
+
 ENV DATABASE=people
 ENV DATABASE_HOST=mysqldb
 ENV DATABASE_USER=rocks
@@ -12,4 +14,3 @@ RUN npm install
 
 EXPOSE 3000
 CMD ["node", "server.js"]
-
