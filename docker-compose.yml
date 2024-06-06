@@ -45,7 +45,7 @@ services:
       DATABASE_USER: rocks
       DATABASE_PASSWORD: 123124
     volumes:
-      - ./nodejs:/usr/src/app
+      - nodeapp:/usr/src/app
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:3000" ]
       interval: 5s
@@ -73,5 +73,6 @@ networks:
 
 volumes:
   dbdata:
+  nodeapp:
 
 
